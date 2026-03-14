@@ -1,15 +1,18 @@
 from fastapi import FastAPI
 
+from app.core.config import settings
+
 app = FastAPI(
-    title="FleetLog API",
+    title=settings.project_name,
     description="Backend API for vehicle maintenance tracking",
-    version="0.1.0",
+    version=settings.version,
+    debug=settings.debug,
 )
 
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to FleetLog API"}
+    return {"message": f"Welcome to {settings.project_name}"}
 
 
 @app.get("/health")
