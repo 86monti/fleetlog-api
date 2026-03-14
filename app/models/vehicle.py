@@ -29,3 +29,7 @@ class Vehicle(Base):
     )
 
     owner: Mapped["User"] = relationship(back_populates="vehicles")
+    service_records: Mapped[list["ServiceRecord"]] = relationship(
+        back_populates="vehicle",
+        cascade="all, delete-orphan",
+    )
