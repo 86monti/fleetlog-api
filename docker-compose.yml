@@ -14,5 +14,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  api:
+    build: .
+    container_name: fleetlog_api
+    restart: always
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
 volumes:
   postgres_data:
